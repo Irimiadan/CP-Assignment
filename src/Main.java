@@ -128,7 +128,30 @@ public class Main {
 
 
         }
+
+        int numGuessed = 0;
+// Define an integer (numGuessed) to be later used to store the numbers of winning numbers and start a loop
+        for (int i = 0; i < userNumbersArray.length; i++) {
+            System.out.println("Checking your number " + userNumbersArray[i]);
+//Loop through the user chosen numbers and display the number being checked
+            for (int j = 0; j < rndNumbersarray.length; j++) {
+                System.out.println("Against winning number " + rndNumbersarray[j]);
+//Loop through the random generated numbers and display the number
+                if (userNumbersArray[i] == rndNumbersarray[j]) {
+                    numGuessed = numGuessed + 1;
+                    System.out.println(userNumbersArray[i] + " And " + rndNumbersarray[j] + " It's a MATCH !");
+                    break;
+/*Compare the user generated number with the random generated numbers.
+If they are equal add 1 to noguessed integer, and break the inner loop (rndNumbersarray) since we don't have any
+duplicates in the random generated number array*/
+                }
+            }
+        }
+
+
+        System.out.println("You guessed "+noGuessed+" Numbers Congratulations !");
         System.out.print("Your chosen numbers are : " +Arrays.toString(userNumbersArray));
+        System.out.print("The random generated numbers are : " +Arrays.toString(rndNumbersarray));
         }
     }
 
