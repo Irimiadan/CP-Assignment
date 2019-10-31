@@ -49,11 +49,12 @@ public class Main {
         }
 //System.out.println(Arrays.toString(randomNumbersArray));
         System.out.println();
-        System.out.println("The sum of all the random drawn numbers is " + randomSum);
+        System.out.println("\n The sum of all the random drawn numbers is " + randomSum);
 //Print the randomSum of all elements.
 // Calculate bonus random €10 (60% chance), €20(20% chance), €50(10% chance), €200(7.5% chance) and €1000(2.5% chance).
         int[] bonusPrize = {0, 0, 0, 0, 0}; // Create array for the 5 possible wins
         double randomBonus;
+        System.out.println("\nNow I will show you four cards if two of them are the same, you won the money shown \n");
 //Starting to loop 4 times to calculate the bonus win.
         for (int i = 0; i < 4; i++) {
             randomBonus = random.nextInt(9999) + 1;
@@ -81,6 +82,7 @@ public class Main {
 // 60% (100-40) chance to obtain bonusPrize 1. If obtained, add 1 to position 4 in the bonusPrize array.
             }
         }
+        System.out.println("\n");
         int moneyBonus = 0;
 //Define integer moneyBonus as a container for the total money won
         for (int i = 0; i < bonusPrize.length; i++) {
@@ -88,23 +90,23 @@ public class Main {
             if (bonusPrize[i] >= 2) {
                 switch (i) {
                     case 0:
-                        System.out.println("\n\n *** Congratulations you won the 1000E bonus ! ***");
+                        System.out.println("\n            *** Congratulations you won the 1000E bonus ! ***");
                         moneyBonus = moneyBonus + 1000;
                         break;
                     case 1:
-                        System.out.println("\n\n *** Congratulations you won the 200E bonus ! ***");
+                        System.out.println("\n             *** Congratulations you won the 200E bonus ! ***");
                         moneyBonus = moneyBonus + 200;
                         break;
                     case 2:
-                        System.out.println("\n\n *** Congratulations you won the 50E bonus ! ***");
+                        System.out.println("\n             *** Congratulations you won the 50E bonus ! ***");
                         moneyBonus = moneyBonus + 50;
                         break;
                     case 3:
-                        System.out.println("\n\n *** Congratulations you won the 20E bonus ! ***");
+                        System.out.println("\n             *** Congratulations you won the 20E bonus ! ***");
                         moneyBonus = moneyBonus + 20;
                         break;
                     case 4:
-                        System.out.println("\n\n *** Congratulations you won the 10E bonus ! ***");
+                        System.out.println("\n             *** Congratulations you won the 10E bonus ! ***");
                         moneyBonus = moneyBonus + 10;
                         break;
 //Use a switch case for all the positions(i) in the array bonusPrize array if in any (i)case the value is > 2 then print
@@ -112,7 +114,7 @@ public class Main {
                 }
             }
         }
-        System.out.println("\n *** Enter 5 numbers. Please do not repeat them *** ");
+        System.out.println("\n Please enter 5 numbers between 1 and 99. Please do not repeat them ");
 
         int[] userNumbersArray = new int[5];
         for (int i = 0; i < userNumbersArray.length; i++) {
@@ -156,21 +158,16 @@ public class Main {
 
 //Define an integer (numGuessed) to be later used to store the numbers of winning numbers and start a loop
         int numGuessed = 0;
-            for (int individualUserElement : userNumbersArray) {
-                //We run loop for each element in userNumbersArray
-                    for (int individualRndElement : randomNumbersArray) {
-//We run another loop in the loop for each element in randomNumbersArray
-                        if (individualUserElement == individualRndElement) {
-                            numGuessed = numGuessed + 1;
-                            System.out.println(numGuessed);
-//If we find a match between the two add +1 to numGuessed
-                        }
-                    }
+        for (int i = 0; i < userNumbersArray.length; i++) {
+//We run loop for each element in userNumbersArray
+            for (int j = 0; j < randomNumbersArray.length; j++) {
+                //We run another loop in the loop for each element in randomNumbersArray
+                if (randomNumbersArray[j] == userNumbersArray[i]) {
+                    //If we find a match between the two add +1 to numGuessed
+                    numGuessed = numGuessed + 1;
                 }
-
-
-
-
+            }
+        }
 //Here we define integer for money, we assign 0 and then we switch. If the user guessed 1 wins 1000 if
 //guessed 2 he gets 5000 and so on. at the end we have the win for this part of the game.
         int moneyNumberGuessed = 0;
@@ -213,7 +210,7 @@ public class Main {
                         sequenceCheck[0] = validMatchCache;
                         validMatchCache = 0;
                     }
-                    System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "     |      " + userNumbersArray[i] + "      |  Nope ");
+                    System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "      |      " + userNumbersArray[i] + "      |  Nope ");
 
 //                    }
                 } else if (i == 4) {
@@ -227,7 +224,7 @@ public class Main {
                                 System.out.println();
                             }
                         }
-                        System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "     |      " + userNumbersArray[i] + "      |  ***  Ahh bummer ! You were doing so great, you got a "+sequenceCheck[1]+" two number sequence");
+                        System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "      |      " + userNumbersArray[i] + "      |  ***  Ahh bummer ! You were doing so great, you got a " + sequenceCheck[1] + " number sequence");
                     }
                     break;
                 } else if (j == 9) {
@@ -246,41 +243,79 @@ public class Main {
 //                        validMatchCache = 0;
 //                    }
 
-                    System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "     |      " + userNumbersArray[i] + "      |  ***  There's a match keep it going ");
+                    System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "      |      " + userNumbersArray[i] + "      |  ***  There's a match keep it going ");
                     j++;
                 }
             }
         }
         int sequentialWin = 0;
-        for (int value : sequenceCheck) {
+        for (int i = 0; i < sequenceCheck.length; i++) {
+            System.out.println(" ");
             System.out.println(Arrays.toString(sequenceCheck));
-            if (value >= 2) {
-                if (value > sequentialWin) {
-                    sequentialWin = value;
+            if (sequenceCheck[i] >= 2) {
+                sequentialWin = sequenceCheck[i];
+                if (sequenceCheck[i] >= sequentialWin) {
+                    System.out.println("Checking if " + sequenceCheck[i] + " and filling to sequentialWin " + sequentialWin);
+                    sequentialWin = sequenceCheck[i];
                 }
+            } else {
+                sequentialWin = sequenceCheck[i];
             }
+        }
 
+
+        int moneySequential = 0;
+        if (sequentialWin >= 2) {
+            switch (sequentialWin) {
+                case 2:
+                    moneySequential = 50000;
+                case 3:
+                    moneySequential = 300000;
+                case 4:
+                    moneySequential = 800000;
+            }
         }
-        int moneySequential;
-        switch (sequentialWin) {
-            case 2:
-                moneySequential = 50000;
-            case 3:
-                moneySequential = 300000;
-            case 4:
-                moneySequential = 800000;
-            case 5:
-                moneySequential = 3000000;
-            default:
-                moneySequential =0;
+
+        System.out.println("\n ***** DEBUG PRINT ***** \n");
+        System.out.println("Sequential for case is " + sequentialWin);
+        System.out.println("Numbers guessed " + numGuessed);
+        System.out.println("Money for sequential win is " + moneySequential);
+        System.out.println("Money for the numbers guessed " + moneyNumberGuessed);
+        System.out.println("The money won as a Bonus for the cards " + moneyBonus);
+        System.out.println("The money won for guessing the sum of all the random numbers " + moneySum);
+        int moneyNoBonus = 0;
+        if (moneyNumberGuessed > moneySum) {
+            System.out.println("Checking if the prise for your guessed numbers " + moneyNumberGuessed + " is bigger than the prize you got for guessing the sum " + moneySum);
+            if (moneyNumberGuessed == moneySequential) {
+                System.out.println("If it's bigger, I'm checking if it's equal with the prize for the sequential numbers" + moneySequential);
+                moneyNoBonus = moneyNumberGuessed;
+                System.out.println("Yeah it was equal so this is your highest prize");
+            }
+            if (moneyNumberGuessed > moneySequential) {
+                System.out.println("Yeah it was bigger. Checking if ths prise is bigger than the sequential win " + moneySequential);
+                moneyNoBonus = moneyNumberGuessed;
+            }
+        } else {
+            if (moneyNumberGuessed == moneySum) {
+                System.out.println("So far your win for the guessed number is the highest. Let's see if it's the same with the prize you got for the sum of all numbers " + moneySum);
+                moneyNoBonus = moneyNumberGuessed;
+            }
+            if (moneySum > moneySequential) {
+                System.out.println("Checking now to see if the prize for the sum " + moneySum + " is bigger than what you won for the sequential numbers " + moneySequential);
+                moneyNoBonus = moneySum;
+                System.out.println("Yeah that was it. Your highest win is " + moneySum);
+            } else {
+                System.out.println("Nope, your highest win is the sequential one " + moneySequential);
+                moneyNoBonus = moneySequential;
+            }
         }
-        System.out.println(numGuessed);
-        System.out.println(moneySequential);
-        System.out.println(moneyNumberGuessed);
-        System.out.println(moneyBonus);
-        System.out.println(moneySum);
+//We add the moneyBonus to the money without bonus
+        int totalWin = moneyNoBonus + moneyBonus;
+        System.out.println("Now we add to your win " + moneyNoBonus + " the bonus for the cards " + moneyBonus);
+        System.out.println("And your total winnings is " + totalWin + " Congratulations !");
     }
 }
+
 
 
 
