@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,16 +29,16 @@ public class Main {
 //(so we stay inside the while argument) and break the loop
                     }
                 }
-                if (duplicate == true) {
+                if (duplicate) {
                     randomNumbersArray[i] = random.nextInt(98) + 1;
 //if duplicate is true we generate another random number.
                 }
             }
         }
-        int sum = 0;
+        int randomSum = 0;
         for (int i = 0; i < 10; i++) {
-            sum = sum + randomNumbersArray[i];
-//calculate the sum of the random generated numbers by adding each element in the randomNumbersArray to (sum).
+            randomSum = randomSum + randomNumbersArray[i];
+//calculate the randomSum of the random generated numbers by adding each element in the randomNumbersArray to (randomSum).
             if (randomNumbersArray[i] < 10) {
                 System.out.print("0" + randomNumbersArray[i] + " ");
 //if the element is lower than 10, we add a padded 0 to it.
@@ -48,8 +49,8 @@ public class Main {
         }
 //System.out.println(Arrays.toString(randomNumbersArray));
         System.out.println();
-        System.out.println("The sum of all the numbers drawn is " + sum);
-//Print the sum of all elements.
+        System.out.println("The sum of all the random drawn numbers is " + randomSum);
+//Print the randomSum of all elements.
 // Calculate bonus random €10 (60% chance), €20(20% chance), €50(10% chance), €200(7.5% chance) and €1000(2.5% chance).
         int[] bonusPrize = {0, 0, 0, 0, 0}; // Create array for the 5 possible wins
         double randomBonus;
@@ -60,58 +61,58 @@ public class Main {
 //Generated an integer from 1 to 10000 and we divide it by 100 to obtain a double from 1 to 100
             if (randomBonus > 0 & randomBonus <= 2.5) {
                 bonusPrize[0] = bonusPrize[0] + 1;
-                System.out.println("€1000");
+                System.out.print("\t" + "€1000  |");
 // 2.5% (2.5-0) chance to obtain bonusPrize 0. If obtained, add 1 to position 0 in the bonusPrize array.
             } else if (randomBonus > 2.5 & randomBonus <= 10) {
                 bonusPrize[1] = bonusPrize[1] + 1;
-                System.out.println("€200");
+                System.out.print("\t" + "€200   |");
 // 7.5% (10-2.5) chance to obtain bonusPrize 1. If obtained, add 1 to position 0 in the bonusPrize array.
             } else if (randomBonus > 10 & randomBonus <= 20) {
                 bonusPrize[2] = bonusPrize[2] + 1;
-                System.out.println("€50");
+                System.out.print("\t" + "€50    |");
 // 10% (20-10) chance to obtain bonusPrize 2. If obtained, add 1 to position 2 in the bonusPrize array.
             } else if (randomBonus > 20 & randomBonus <= 40) {
                 bonusPrize[3] = bonusPrize[3] + 1;
-                System.out.println("€20");
+                System.out.print("\t" + "€20    |");
 // 20% (40-20) chance to obtain bonusPrize 1. If obtained, add 1 to position 3 in the bonusPrize array.
             } else if (randomBonus > 40 & randomBonus <= 100) {
                 bonusPrize[4] = bonusPrize[4] + 1;
-                System.out.println("€10");
+                System.out.print("\t" + "€10    |");
 // 60% (100-40) chance to obtain bonusPrize 1. If obtained, add 1 to position 4 in the bonusPrize array.
             }
         }
-        int bonusWin = 0;
-//Define integer bonusWin as a container for the total money won
+        int moneyBonus = 0;
+//Define integer moneyBonus as a container for the total money won
         for (int i = 0; i < bonusPrize.length; i++) {
 //Run a loop through bonusPrize array positions.
             if (bonusPrize[i] >= 2) {
                 switch (i) {
                     case 0:
-                        System.out.println("Congratulations you won the 1000E bonus !");
-                        bonusWin = bonusWin + 1000;
+                        System.out.println("\n\n *** Congratulations you won the 1000E bonus ! ***");
+                        moneyBonus = moneyBonus + 1000;
                         break;
                     case 1:
-                        System.out.println("Congratulations you won the 200E bonus !");
-                        bonusWin = bonusWin + 200;
+                        System.out.println("\n\n *** Congratulations you won the 200E bonus ! ***");
+                        moneyBonus = moneyBonus + 200;
                         break;
                     case 2:
-                        System.out.println("Congratulations you won the 50E bonus !");
-                        bonusWin = bonusWin + 50;
+                        System.out.println("\n\n *** Congratulations you won the 50E bonus ! ***");
+                        moneyBonus = moneyBonus + 50;
                         break;
                     case 3:
-                        System.out.println("Congratulations you won the 20E bonus !");
-                        bonusWin = bonusWin + 20;
+                        System.out.println("\n\n *** Congratulations you won the 20E bonus ! ***");
+                        moneyBonus = moneyBonus + 20;
                         break;
                     case 4:
-                        System.out.println("Congratulations you won the 10E bonus !");
-                        bonusWin = bonusWin + 10;
+                        System.out.println("\n\n *** Congratulations you won the 10E bonus ! ***");
+                        moneyBonus = moneyBonus + 10;
                         break;
-//Use a swich case for all the positions(i) in the array bonusPrize array if in any (i)case the value is > 2 then print
-// "congrats and the sum won" then add the amount to bonusWin
+//Use a switch case for all the positions(i) in the array bonusPrize array if in any (i)case the value is > 2 then print
+// "congrats and the randomSum won" then add the amount to moneyBonus
                 }
             }
         }
-        System.out.println("Enter 5 numbers. Please do not repeat them");
+        System.out.println("\n *** Enter 5 numbers. Please do not repeat them *** ");
 
         int[] userNumbersArray = new int[5];
         for (int i = 0; i < userNumbersArray.length; i++) {
@@ -137,65 +138,159 @@ public class Main {
                         break;
                     }
                 }
-                if (notValid == true) {
+                if (notValid) {
                     userNumbersArray[i] = scan.nextInt();
                 }
             }
-
-
+        }
+        int moneySum = 0;
+        System.out.println("Good Job ! Now please enter what you believe is the sum of all the winning numbers");
+        int userSum = scan.nextInt();
+        System.out.println("\nGreat Job ! Now let's see ...");
+        if (userSum == randomSum) {
+            System.out.println("That's it you guessed it");
+            moneySum = 300000;
+        } else {
+            System.out.println("Bad luck :( the winning numbers sum was " + randomSum + " and your number was " + userSum + " it wasn't it");
         }
 
+//Define an integer (numGuessed) to be later used to store the numbers of winning numbers and start a loop
         int numGuessed = 0;
-// Define an integer (numGuessed) to be later used to store the numbers of winning numbers and start a loop
-//        for (int i = 0; i < userNumbersArray.length; i++) {
-//            System.out.println("Checking your number " + userNumbersArray[i]);
-////Loop through the user chosen numbers and display the number being checked
-//            for (int j = 0; j < randomNumbersArray.length; j++) {
-////                System.out.println("Against winning number " + randomNumbersArray[j]);
-////Loop through the random generated numbers and display the number
-//                if (userNumbersArray[i] == randomNumbersArray[j]) {
-//                    numGuessed = numGuessed + 1;
-////                    System.out.println(userNumbersArray[i] + " And " + randomNumbersArray[j] + " It's a MATCH !");
-//                    break;
-///*Compare the user generated number with the random generated numbers.
-//If they are equal add 1 to numGuessed integer, and break the inner loop (randomNumbersArray) since we don't have any
-//duplicates in the random generated number array*/
-//                }
-//            }
-//        }
-        System.out.println("  ");
-        System.out.println("  ");
-
-        int foundCache = 0;
-        for (int i = foundCache; i <= (userNumbersArray.length) - 1; i++) {
-
-            for (int j = foundCache; j < randomNumbersArray.length; j++) {
-                System.out.println("Now check " + userNumbersArray[i] + " and " + randomNumbersArray[j]);
-                if (userNumbersArray[i] == randomNumbersArray[j]) {
-                    System.out.print("...Those two are the same the same... ");
-                    foundCache = j + 1;
-                    System.out.println("Adding Cache");
-                    System.out.println("...Next...");
-                    break;
-
+            for (int individualUserElement : userNumbersArray) {
+                //We run loop for each element in userNumbersArray
+                    for (int individualRndElement : randomNumbersArray) {
+//We run another loop in the loop for each element in randomNumbersArray
+                        if (individualUserElement == individualRndElement) {
+                            numGuessed = numGuessed + 1;
+                            System.out.println(numGuessed);
+//If we find a match between the two add +1 to numGuessed
+                        }
+                    }
                 }
-                else {
-                    System.out.println("...Those two are NOT the same the same... ");
+
+
+
+
+//Here we define integer for money, we assign 0 and then we switch. If the user guessed 1 wins 1000 if
+//guessed 2 he gets 5000 and so on. at the end we have the win for this part of the game.
+        int moneyNumberGuessed = 0;
+        switch (numGuessed) {
+            case 1:
+                moneyNumberGuessed = 1000;
+            case 2:
+                moneyNumberGuessed = 5000;
+            case 3:
+                moneyNumberGuessed = 20000;
+            case 4:
+                moneyNumberGuessed = 100000;
+            case 5:
+                moneyNumberGuessed = 700000;
+        }
+
+
+        System.out.println("  ");
+
+        int validMatchCache = 0;
+        int[] sequenceCheck = new int[4];
+        boolean endOfUserArr = true;
+        System.out.println();
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("||  We now have to check if any of your  ||");
+        System.out.println("||    numbers are a matching sequence    ||");
+        System.out.println("||                                       ||");
+        System.out.println("||           Hold your breath            ||");
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println(" ");
+        System.out.println("========================================");
+        System.out.println("|  Position |  RandomNum  |   UserNum    |");
+        for (int j = 0; j < randomNumbersArray.length; j++) {
+            if (!endOfUserArr) {
+                break;
+            }
+            for (int i = 0; i <= userNumbersArray.length - 1; i++) {
+                if (userNumbersArray[i] != randomNumbersArray[j]) {
+                    if (validMatchCache > 0) {
+                        sequenceCheck[0] = validMatchCache;
+                        validMatchCache = 0;
+                    }
+                    System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "     |      " + userNumbersArray[i] + "      |  Nope ");
+
+//                    }
+                } else if (i == 4) {
+                    if (randomNumbersArray[j] == userNumbersArray[i]) {
+                        if (validMatchCache >= 1) {
+                            sequenceCheck[1] = validMatchCache + 1;
+                            validMatchCache = 0;
+                            if (sequenceCheck[1] > 4) {
+                                endOfUserArr = false;
+                                System.out.println();
+                                System.out.println();
+                            }
+                        }
+                        System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "     |      " + userNumbersArray[i] + "      |  ***  Ahh bummer ! You were doing so great, you got a "+sequenceCheck[1]+" two number sequence");
+                    }
+                    break;
+                } else if (j == 9) {
+                    if (randomNumbersArray[j] == userNumbersArray[i]) {
+                        if (validMatchCache >= 1) {
+                            sequenceCheck[2] = validMatchCache + 1;
+                            validMatchCache = 0;
+                            System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "     |      " + userNumbersArray[i] + "     |  ***  You won ! You guessed a sequence of " + sequenceCheck[2]);
+                        }
+                        break;
+                    }
+                } else {
+                    validMatchCache = validMatchCache + 1;
+//                    if (validMatchCache>1) {
+//                        sequenceCheck[3] = validMatchCache;
+//                        validMatchCache = 0;
+//                    }
+
+                    System.out.println("|   " + j + " & " + i + "   |     " + randomNumbersArray[j] + "     |      " + userNumbersArray[i] + "      |  ***  There's a match keep it going ");
+                    j++;
                 }
             }
         }
+        int sequentialWin = 0;
+        for (int value : sequenceCheck) {
+            System.out.println(Arrays.toString(sequenceCheck));
+            if (value >= 2) {
+                if (value > sequentialWin) {
+                    sequentialWin = value;
+                }
+            }
+
+        }
+        int moneySequential;
+        switch (sequentialWin) {
+            case 2:
+                moneySequential = 50000;
+            case 3:
+                moneySequential = 300000;
+            case 4:
+                moneySequential = 800000;
+            case 5:
+                moneySequential = 3000000;
+            default:
+                moneySequential =0;
+        }
+        System.out.println(numGuessed);
+        System.out.println(moneySequential);
+        System.out.println(moneyNumberGuessed);
+        System.out.println(moneyBonus);
+        System.out.println(moneySum);
     }
 }
-//        }
 
-//                    if (randomNumbersArray[i+1]==userNumbersArray[j+1]) {
-//                                System.out.println("consecutive Value" + consecutive + "winnings" + consecutiveWin);
-//                    consecutive = consecutive + 1;
-//                    System.out.println("Match found ");
-//        System.out.println("You guessed " + numGuessed + " Numbers Congratulations !");
-//        System.out.print("Your chosen numbers are : " + Arrays.toString(userNumbersArray));
-//        System.out.print("The random generated numbers are : " + Arrays.toString(randomNumbersArray));
-//    }
+
+
+
+
+
+
+
+
+
 
 
 
